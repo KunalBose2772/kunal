@@ -2,100 +2,205 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowUpRight, Github, ExternalLink } from "lucide-react";
-import Link from "next/link";
+import { Terminal } from "lucide-react";
 
-const PROJECTS = [
+const SYSTEMS = [
     {
-        id: 1,
-        title: "Feature-Rich Web Application",
-        description: "A highly interactive web platform built with Next.js and TailwindCSS, featuring real-time data synchronization and complex state management.",
+        id: "01",
+        title: "Custom WordPress Business Platform",
+        positioning: "Structured CMS architecture for scalable business operations.",
+        overview: "Designed and engineered a custom WordPress solution focused on maintainability, structured theme development, and optimized performance.",
+        highlights: [
+            "Custom theme engineering (no page builder dependency)",
+            "Modular PHP structure",
+            "Optimized database queries",
+            "SEO and Core Web Vitals optimization",
+            "Secure hosting configuration"
+        ],
+        stack: "WordPress · PHP · MySQL · Nginx/Apache",
         image: "/project1.png",
-        tags: ["React", "Next.js", "TailwindCSS"],
-        link: "#",
-        github: "#"
     },
     {
-        id: 2,
-        title: "SaaS Platform Interface",
-        description: "Enterprise-grade dashboard architecture prioritizing data visualization, performance metrics, and seamless user experience.",
+        id: "02",
+        title: "SaaS Admin Dashboard",
+        positioning: "Scalable product interface with structured component architecture.",
+        overview: "Developed a dynamic admin dashboard with authentication flow, role-based access, and modular UI components.",
+        highlights: [
+            "Next.js routing architecture",
+            "API-driven UI",
+            "Reusable component system",
+            "State management structure",
+            "Secure session handling"
+        ],
+        stack: "Next.js · React · REST API · Tailwind CSS",
         image: "/project2.png",
-        tags: ["TypeScript", "Node.js", "PostgreSQL"],
-        link: "#",
-        github: "#"
+    },
+    {
+        id: "03",
+        title: "PHP Backend Application",
+        positioning: "Structured backend system with clean logic separation.",
+        overview: "Engineered a PHP application with organized controllers, reusable logic layers, and optimized relational database design.",
+        highlights: [
+            "OOP-based PHP structure",
+            "Relational database schema design",
+            "Secure form handling",
+            "Role-based admin logic",
+            "Performance optimization"
+        ],
+        stack: "Core PHP · MySQL · Server-side Validation",
+        image: "/project1.png",
+    },
+    {
+        id: "04",
+        title: "E-Commerce Prototype (CCL Internship)",
+        positioning: "Frontend-led commerce system with structured UI flow.",
+        overview: "Built an online shopping system with product management, cart flow, and responsive layout during enterprise internship exposure.",
+        highlights: [
+            "Structured product listing logic",
+            "Cart interaction system",
+            "Responsive layout implementation",
+            "Team-led frontend coordination"
+        ],
+        stack: "HTML · CSS · JavaScript · Bootstrap",
+        image: "/project2.png",
+    },
+    {
+        id: "05",
+        title: "Razorpay Integrated Website",
+        positioning: "Production-ready deployment with payment workflow integration.",
+        overview: "Integrated Razorpay payment gateway and structured transaction handling within a deployed website environment.",
+        highlights: [
+            "Payment gateway API integration",
+            "Secure transaction flow",
+            "Deployment workflow understanding",
+            "Hosting & domain configuration"
+        ],
+        stack: "JavaScript · Razorpay API · Hosting Deployment",
+        image: "/project1.png",
     }
 ];
 
 export default function Work() {
     return (
-        <section id="work" className="relative min-h-screen py-24 border-t border-slate-200/10 z-10">
-            <div className="max-w-[1480px] w-full mx-auto px-6 md:px-12">
+        <section id="work" className="relative py-24 lg:py-32 border-t border-slate-200/10 z-10 flex flex-col justify-center overflow-hidden">
+            <div className="max-w-[1280px] w-full mx-auto px-6 md:px-12 relative z-10 flex flex-col gap-16 md:gap-[160px]">
+
+                {/* Section Header */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8 }}
-                    className="mb-16 md:mb-24"
+                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                    className="flex flex-col items-start text-left max-w-2xl"
                 >
-                    <span className="text-brand-accent font-semibold tracking-wider uppercase text-sm mb-4 block">
-                        01. Selected Works
+                    <span className="text-brand-accent font-semibold tracking-widest uppercase text-xs md:text-sm mb-4 block">
+                        SELECTED SYSTEMS
                     </span>
-                    <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground">
-                        Featured Projects
+                    <h2 className="text-[clamp(36px,5vw,64px)] leading-[1.05] font-heading font-bold text-foreground tracking-tight">
+                        Engineered <br className="hidden md:block" />
+                        <span className="text-slate-400 dark:text-slate-500">Case Studies.</span>
                     </h2>
                 </motion.div>
 
-                <div className="grid grid-cols-1 gap-16 md:gap-24">
-                    {PROJECTS.map((project, index) => (
-                        <motion.div
-                            key={project.id}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 0.8, delay: index * 0.1 }}
-                            className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-8 lg:gap-16 items-center group`}
-                        >
-                            {/* Project Image */}
-                            <div className="w-full lg:w-3/5">
-                                <Link href={project.link} className="block w-full overflow-hidden rounded-2xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-white/10 relative aspect-[16/10] group-hover:border-brand-accent/50 transition-colors duration-500">
-                                    <div className="absolute inset-0 z-10 bg-brand-accent/0 group-hover:bg-brand-accent/10 transition-colors duration-500" />
-                                    <Image
-                                        src={project.image}
-                                        alt={project.title}
-                                        fill
-                                        className="object-cover object-top opacity-90 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
-                                    />
-                                </Link>
-                            </div>
+                {/* Systems List */}
+                <div className="flex flex-col gap-32 md:gap-[160px] w-full">
+                    {SYSTEMS.map((system, index) => {
+                        const isEven = index % 2 !== 0; // 0 is System 1 (Left Image), 1 is System 2 (Right Image), etc.
 
-                            {/* Project Info */}
-                            <div className="w-full lg:w-2/5 flex flex-col items-start text-left">
-                                <h3 className="text-2xl md:text-3xl font-heading font-bold mb-4 text-foreground group-hover:text-brand-accent transition-colors">
-                                    {project.title}
-                                </h3>
-                                <div className="bg-slate-50 dark:bg-slate-800/80 p-6 rounded-xl border border-slate-200 dark:border-white/5 mb-6 shadow-sm">
-                                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                                        {project.description}
+                        return (
+                            <div
+                                key={system.id}
+                                className={`flex flex-col lg:items-center ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-20 w-full`}
+                            >
+                                {/* Visual Preview Layer */}
+                                <motion.div
+                                    className="w-full lg:w-1/2 relative aspect-[16/10] md:aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200/50 dark:border-white/5 bg-slate-100 dark:bg-slate-900/50 group"
+                                    initial={{ opacity: 0, x: isEven ? 40 : -40 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true, margin: "-100px" }}
+                                    transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                                >
+                                    <div className="absolute inset-0 bg-brand-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 pointer-events-none" />
+
+                                    <motion.div
+                                        initial={{ scale: 0.98 }}
+                                        whileInView={{ scale: 1 }}
+                                        viewport={{ once: true, margin: "-100px" }}
+                                        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                                        className="w-full h-full relative"
+                                    >
+                                        <Image
+                                            src={system.image}
+                                            alt={system.title}
+                                            fill
+                                            className="object-cover object-top opacity-90 grayscale-[20%] group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+                                            sizes="(min-width: 1024px) 50vw, 100vw"
+                                        />
+                                    </motion.div>
+
+                                    {/* Tech corner badge */}
+                                    <div className="absolute top-4 right-4 z-20 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-200 dark:border-white/10 shadow-sm flex items-center gap-2">
+                                        <Terminal className="w-3.5 h-3.5 text-brand-accent" />
+                                        <span className="text-[10px] uppercase tracking-wider font-mono font-bold text-slate-600 dark:text-slate-400">{system.id}</span>
+                                    </div>
+                                </motion.div>
+
+                                {/* Structured Documentation Block */}
+                                <motion.div
+                                    className="w-full lg:w-1/2 flex flex-col items-start"
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: "-100px" }}
+                                    transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                                >
+                                    <span className="text-brand-accent font-medium text-sm md:text-base tracking-wide mb-3">
+                                        {system.positioning}
+                                    </span>
+
+                                    <h3 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">
+                                        {system.title}
+                                    </h3>
+
+                                    <p className="text-slate-600 dark:text-slate-400 text-base md:text-lg leading-relaxed mb-8">
+                                        {system.overview}
                                     </p>
-                                </div>
-                                <ul className="flex flex-wrap gap-3 mb-8">
-                                    {project.tags.map((tag) => (
-                                        <li key={tag} className="text-sm font-medium px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-brand-accent rounded-full border border-slate-200 dark:border-brand-accent/20">
-                                            {tag}
-                                        </li>
-                                    ))}
-                                </ul>
-                                <div className="flex items-center gap-6">
-                                    <Link href={project.link} className="flex items-center gap-2 font-semibold text-brand-accent hover:text-brand-hover transition-colors">
-                                        View Live <ExternalLink className="w-4 h-4" />
-                                    </Link>
-                                    <Link href={project.github} className="flex items-center gap-2 font-medium text-slate-600 dark:text-slate-400 hover:text-foreground transition-colors">
-                                        <Github className="w-5 h-5" /> Code
-                                    </Link>
-                                </div>
+
+                                    {/* Animated left-to-right divider */}
+                                    <motion.div
+                                        className="w-full h-[1px] bg-slate-200 dark:bg-white/10 mb-8 origin-left"
+                                        initial={{ scaleX: 0 }}
+                                        whileInView={{ scaleX: 1 }}
+                                        viewport={{ once: true, margin: "-100px" }}
+                                        transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                                    />
+
+                                    <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+                                        <div className="col-span-1 md:col-span-2 text-sm font-semibold text-slate-800 dark:text-slate-200 uppercase tracking-widest mb-2">
+                                            Architecture Highlights
+                                        </div>
+                                        {system.highlights.map((highlight, hIndex) => (
+                                            <div key={hIndex} className="flex gap-3 items-start">
+                                                <div className="mt-1.5 w-1.5 h-1.5 rounded-sm bg-brand-accent/60 flex-shrink-0" />
+                                                <span className="text-sm font-medium text-slate-600 dark:text-slate-400 leading-snug">{highlight}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    {/* Tech Stack Line */}
+                                    <div className="w-full bg-slate-50 dark:bg-[#0a0f1a] border border-slate-200/50 dark:border-white/5 rounded-xl p-4 flex flex-col md:flex-row md:items-center gap-4">
+                                        <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500 whitespace-nowrap">
+                                            Tech Stack
+                                        </span>
+                                        <div className="w-px h-4 bg-slate-300 dark:bg-white/10 hidden md:block" />
+                                        <span className="text-sm font-mono text-brand-accent dark:text-brand-accent/90">
+                                            {system.stack}
+                                        </span>
+                                    </div>
+
+                                </motion.div>
                             </div>
-                        </motion.div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         </section>
