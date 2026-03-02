@@ -1,12 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Send, Mail, MapPin, Github, Linkedin, Twitter } from "lucide-react";
+import { Send, Mail, MapPin, Github, Linkedin, Twitter, Facebook } from "lucide-react";
 import Link from "next/link";
 
 export default function Contact() {
     return (
-        <section id="contact" className="relative min-h-[80vh] py-24 border-t border-slate-200/10 z-10 flex flex-col justify-center">
+        <section id="contact" className="relative min-h-[80vh] py-12 lg:py-16 border-t border-slate-200/10 z-10 flex flex-col justify-center">
             <div className="absolute inset-0 pointer-events-none radial-glow opacity-30 dark:opacity-50" />
             <div className="max-w-[1480px] w-full mx-auto px-6 md:px-12 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
@@ -45,15 +45,23 @@ export default function Contact() {
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-4">
-                            <Link href="#" className="w-12 h-12 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900 hover:border-brand-accent hover:text-brand-accent transition-all">
+                        <div className="flex flex-wrap items-center gap-4">
+                            <Link href="https://github.com/KunalBose2772" target="_blank" className="w-12 h-12 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900 hover:border-brand-accent hover:text-brand-accent transition-all">
                                 <Github className="w-5 h-5" />
                             </Link>
-                            <Link href="#" className="w-12 h-12 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900 hover:border-brand-accent hover:text-brand-accent transition-all">
+                            <Link href="https://linkedin.com/in/kunal-bose-a45926269" target="_blank" className="w-12 h-12 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900 hover:border-brand-accent hover:text-brand-accent transition-all">
                                 <Linkedin className="w-5 h-5" />
                             </Link>
-                            <Link href="#" className="w-12 h-12 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900 hover:border-brand-accent hover:text-brand-accent transition-all">
+                            <Link href="https://x.com/KunalBose2772" target="_blank" className="w-12 h-12 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900 hover:border-brand-accent hover:text-brand-accent transition-all">
                                 <Twitter className="w-5 h-5" />
+                            </Link>
+                            {/* Note: using an svg block here or lucide-react if instagram icon existed, but lucide doesn't have it natively sometimes. Using lucide 'Facebook' for facebook since it exists */}
+                            <Link href="https://facebook.com/people/Kunal-Bose" target="_blank" className="w-12 h-12 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900 hover:border-brand-accent hover:text-brand-accent transition-all">
+                                <Facebook className="w-5 h-5" />
+                            </Link>
+                            <Link href="https://instagram.com/kunalbose2772" target="_blank" className="w-12 h-12 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900 hover:border-brand-accent hover:text-brand-accent transition-all">
+                                {/* Using a custom SVG for instagram as it is often missing in older lucide sets */}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                             </Link>
                         </div>
                     </motion.div>
