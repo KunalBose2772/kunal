@@ -1,10 +1,45 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, Facebook, ArrowRight, Download } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Github, Linkedin, Twitter, Facebook, ArrowRight, Download, X, Loader2 } from "lucide-react";
 import Link from "next/link";
 
 export default function Contact() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(null);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitStatus(null);
+
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+            const data = await res.json();
+
+            if (res.ok) {
+                setSubmitStatus("success");
+                setFormData({ name: "", email: "", message: "" });
+                setTimeout(() => {
+                    setIsModalOpen(false);
+                    setSubmitStatus(null);
+                }, 3000);
+            } else {
+                setSubmitStatus("error");
+            }
+        } catch (error) {
+            setSubmitStatus("error");
+        }
+        setIsSubmitting(false);
+    };
+
     return (
         <section id="contact" className="relative min-h-[90vh] py-24 flex flex-col justify-center items-center text-center overflow-hidden border-t border-slate-200/10 z-10">
             {/* Cinematic Background Glow */}
@@ -60,13 +95,13 @@ export default function Contact() {
                     </Link>
 
                     {/* Secondary Button */}
-                    <a
-                        href="mailto:kunalbose.2525@gmail.com"
+                    <button
+                        onClick={() => setIsModalOpen(true)}
                         className="group flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-slate-200/50 dark:border-white/10 bg-slate-50/50 dark:bg-slate-900/50 hover:bg-white dark:hover:bg-slate-800 backdrop-blur-md transition-all duration-300 font-semibold text-foreground shadow-sm w-full sm:w-auto"
                     >
                         Start a Conversation
                         <ArrowRight className="w-5 h-5 text-brand-accent group-hover:translate-x-1 transition-transform" />
-                    </a>
+                    </button>
                 </motion.div>
 
                 {/* Direct Contact & Socials Block */}
@@ -115,6 +150,95 @@ export default function Contact() {
                 </motion.div>
 
             </div>
+
+            {/* Contact Modal Layer */}
+            <AnimatePresence>
+                {isModalOpen && (
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 overflow-hidden">
+                        <motion.div
+                            className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsModalOpen(false)}
+                        />
+                        <motion.div
+                            className="relative w-full max-w-lg bg-white dark:bg-[#0a0f1a] border border-slate-200 dark:border-white/10 p-8 rounded-3xl shadow-2xl flex flex-col z-10"
+                            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                        >
+                            <button
+                                onClick={() => setIsModalOpen(false)}
+                                className="absolute top-6 right-6 text-slate-400 hover:text-foreground transition-colors"
+                            >
+                                <X className="w-6 h-6" />
+                            </button>
+
+                            <h3 className="text-2xl font-bold font-heading text-foreground mb-2">Initiate Contact</h3>
+                            <p className="text-slate-500 mb-8 text-sm">Send a direct message to Kunal's secure inbox.</p>
+
+                            <form onSubmit={handleSubmit} className="flex flex-col gap-5 text-left">
+                                <div className="flex flex-col gap-2">
+                                    <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Name</label>
+                                    <input
+                                        type="text"
+                                        required
+                                        value={formData.name}
+                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                        className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 rounded-xl focus:outline-none focus:border-brand-accent transition-colors text-foreground"
+                                        placeholder="Your full name"
+                                    />
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Email</label>
+                                    <input
+                                        type="email"
+                                        required
+                                        value={formData.email}
+                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                        className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 rounded-xl focus:outline-none focus:border-brand-accent transition-colors text-foreground"
+                                        placeholder="you@company.com"
+                                    />
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Message</label>
+                                    <textarea
+                                        required
+                                        rows={4}
+                                        value={formData.message}
+                                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                        className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 rounded-xl focus:outline-none focus:border-brand-accent transition-colors resize-none text-foreground"
+                                        placeholder="Discuss your architecture requirements..."
+                                    />
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className="mt-2 w-full group relative flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-white overflow-hidden transition-all duration-300 bg-brand-accent hover:shadow-[0_4px_20px_rgba(91,95,255,0.4)] disabled:opacity-70 disabled:cursor-not-allowed"
+                                >
+                                    {isSubmitting ? (
+                                        <><Loader2 className="w-5 h-5 animate-spin" /> Transmitting...</>
+                                    ) : submitStatus === "success" ? (
+                                        "Message Sent"
+                                    ) : submitStatus === "error" ? (
+                                        "Failed. Try Email Direct"
+                                    ) : (
+                                        <><ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /> Send Securely</>
+                                    )}
+                                </button>
+                                {submitStatus === "success" && (
+                                    <p className="text-green-500 text-sm text-center mt-2 font-medium">Message received successfully. Closing terminal...</p>
+                                )}
+                                {submitStatus === "error" && (
+                                    <p className="text-red-500 text-sm text-center mt-2 font-medium">Terminal error. Please use direct email link.</p>
+                                )}
+                            </form>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
         </section>
     );
 }
