@@ -76,8 +76,7 @@
 }
 
 html.dark .nav-glass {
-  background:
-    linear-gradient(135deg, rgba(2, 6, 23, 0.8) 0%, rgba(15, 23, 42, 0.5) 100%);
+  background: rgba(0, 0, 0, 0.65);
 }
 
 .crystal-border {
