@@ -121,8 +121,8 @@ export default function Contact() {
 
                     {/* Contact Channels */}
                     <div className="flex flex-col gap-3 justify-center md:items-center">
-                        <a href="mailto:kunalbose.2525@gmail.com" className="text-slate-600 dark:text-slate-300 hover:text-[#5B5FFF] transition-colors font-medium text-sm md:text-base">
-                            kunalbose.2525@gmail.com
+                        <a href="mailto:kunalbose2570@gmail.com" className="text-slate-600 dark:text-slate-300 hover:text-[#5B5FFF] transition-colors font-medium text-sm md:text-base">
+                            kunalbose2570@gmail.com
                         </a>
                         <a href="tel:7667341075" className="text-slate-600 dark:text-slate-300 hover:text-[#5B5FFF] transition-colors font-medium text-sm md:text-base">
                             +91 76673 41075
