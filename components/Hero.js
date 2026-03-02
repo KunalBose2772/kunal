@@ -45,7 +45,7 @@ export default function Hero() {
                     </motion.div>
 
                     <motion.div variants={fadeUp} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }} className="mb-10 md:mb-12">
-                        <p className="text-neutral-950 dark:text-slate-100 font-medium text-[18px] leading-relaxed max-w-[500px]">
+                        <p className="text-black dark:text-slate-100 font-medium text-[18px] leading-relaxed max-w-[500px]">
                             Full-Stack Developer building performance-driven web platforms, SaaS products, and scalable architectures.
                         </p>
                     </motion.div>
