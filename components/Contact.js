@@ -1,118 +1,119 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Send, Mail, MapPin, Github, Linkedin, Twitter, Facebook } from "lucide-react";
+import { Github, Linkedin, Twitter, Facebook, ArrowRight, Download } from "lucide-react";
 import Link from "next/link";
 
 export default function Contact() {
     return (
-        <section id="contact" className="relative min-h-[80vh] py-12 lg:py-16 border-t border-slate-200/10 z-10 flex flex-col justify-center">
-            <div className="absolute inset-0 pointer-events-none radial-glow opacity-30 dark:opacity-50" />
-            <div className="max-w-[1480px] w-full mx-auto px-6 md:px-12 relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+        <section id="contact" className="relative min-h-[90vh] py-24 flex flex-col justify-center items-center text-center overflow-hidden border-t border-slate-200/10 z-10">
+            {/* Cinematic Background Glow */}
+            <motion.div
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[800px] md:h-[800px] rounded-full bg-gradient-to-br from-[#5B5FFF] to-[#00E0FF] blur-[120px] pointer-events-none"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 0.08, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+            />
 
-                    {/* Left Side: Contact Info */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.8 }}
-                        className="flex flex-col justify-center"
+            <div className="max-w-[1200px] w-full mx-auto px-6 relative z-10 flex flex-col items-center">
+
+                {/* Headline */}
+                <motion.h2
+                    className="text-[clamp(40px,6vw,80px)] leading-[1.05] font-heading font-bold text-foreground tracking-tight mb-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                >
+                    Let's Build Something <br className="hidden md:block" />
+                    Structured.
+                </motion.h2>
+
+                {/* Subtext */}
+                <motion.p
+                    className="text-slate-600 dark:text-slate-400 text-lg md:text-xl leading-relaxed font-medium max-w-2xl mb-16"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                >
+                    If you're looking for someone who thinks beyond interfaces and builds systems with clarity, performance, and long-term scalability — let's connect.
+                </motion.p>
+
+                {/* CTA Buttons */}
+                <motion.div
+                    className="flex flex-col sm:flex-row items-center gap-6 mb-24"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                >
+                    {/* Primary Button */}
+                    <Link
+                        href="#resume"
+                        className="group relative flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-white overflow-hidden transition-all duration-300 shadow-[0_4px_20px_rgba(91,95,255,0.25)] hover:shadow-[0_8px_30px_rgba(0,224,255,0.4)] w-full sm:w-auto"
                     >
-                        <span className="text-brand-accent font-semibold tracking-wider uppercase text-sm mb-4 block">
-                            02. Get In Touch
-                        </span>
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground mb-6">
-                            Let's build something <br className="hidden md:block" />
-                            <span className="text-brand-accent">amazing together.</span>
-                        </h2>
-                        <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed max-w-[500px] mb-12">
-                            Currently open for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
-                        </p>
+                        <div className="absolute inset-0 bg-gradient-to-r from-[#5B5FFF] to-[#00E0FF] transition-transform duration-500 group-hover:scale-105" />
+                        <span className="relative z-10">View Resume</span>
+                        <Download className="w-5 h-5 relative z-10 group-hover:-translate-y-0.5 transition-transform" />
+                    </Link>
 
-                        <div className="flex flex-col gap-6 mb-12">
-                            <a href="mailto:hello@kunalbose.com" className="group flex items-center gap-4 text-foreground w-fit">
-                                <div className="w-12 h-12 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900 group-hover:border-brand-accent group-hover:bg-brand-accent/5 transition-all">
-                                    <Mail className="w-5 h-5 text-slate-600 dark:text-brand-accent" />
-                                </div>
-                                <span className="text-lg font-medium group-hover:text-brand-accent transition-colors">hello@kunalbose.com</span>
-                            </a>
-                            <div className="flex items-center gap-4 text-foreground w-fit">
-                                <div className="w-12 h-12 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900">
-                                    <MapPin className="w-5 h-5 text-slate-600 dark:text-slate-400" />
-                                </div>
-                                <span className="text-lg font-medium text-slate-600 dark:text-slate-300">Available Nationwide</span>
-                            </div>
-                        </div>
-
-                        <div className="flex flex-wrap items-center gap-4">
-                            <Link href="https://github.com/KunalBose2772" target="_blank" className="w-12 h-12 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900 hover:border-brand-accent hover:text-brand-accent transition-all">
-                                <Github className="w-5 h-5" />
-                            </Link>
-                            <Link href="https://linkedin.com/in/kunal-bose-a45926269" target="_blank" className="w-12 h-12 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900 hover:border-brand-accent hover:text-brand-accent transition-all">
-                                <Linkedin className="w-5 h-5" />
-                            </Link>
-                            <Link href="https://x.com/KunalBose2772" target="_blank" className="w-12 h-12 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900 hover:border-brand-accent hover:text-brand-accent transition-all">
-                                <Twitter className="w-5 h-5" />
-                            </Link>
-                            {/* Note: using an svg block here or lucide-react if instagram icon existed, but lucide doesn't have it natively sometimes. Using lucide 'Facebook' for facebook since it exists */}
-                            <Link href="https://facebook.com/people/Kunal-Bose" target="_blank" className="w-12 h-12 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900 hover:border-brand-accent hover:text-brand-accent transition-all">
-                                <Facebook className="w-5 h-5" />
-                            </Link>
-                            <Link href="https://instagram.com/kunalbose2772" target="_blank" className="w-12 h-12 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900 hover:border-brand-accent hover:text-brand-accent transition-all">
-                                {/* Using a custom SVG for instagram as it is often missing in older lucide sets */}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                            </Link>
-                        </div>
-                    </motion.div>
-
-                    {/* Right Side: Form */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="bg-white dark:bg-slate-900/50 p-8 md:p-10 rounded-3xl border border-slate-200 dark:border-white/5 shadow-xl shadow-slate-200/50 dark:shadow-none"
+                    {/* Secondary Button */}
+                    <a
+                        href="mailto:kunalbose.2525@gmail.com"
+                        className="group flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-slate-200/50 dark:border-white/10 bg-slate-50/50 dark:bg-slate-900/50 hover:bg-white dark:hover:bg-slate-800 backdrop-blur-md transition-all duration-300 font-semibold text-foreground shadow-sm w-full sm:w-auto"
                     >
-                        <form className="flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
-                            <div className="flex flex-col gap-2">
-                                <label htmlFor="name" className="text-sm font-medium text-slate-700 dark:text-slate-300">Name</label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-white/10 focus:border-brand-accent focus:ring-1 focus:ring-brand-accent outline-none transition-all placeholder:text-slate-400"
-                                    placeholder="John Doe"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                <label htmlFor="email" className="text-sm font-medium text-slate-700 dark:text-slate-300">Email</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-white/10 focus:border-brand-accent focus:ring-1 focus:ring-brand-accent outline-none transition-all placeholder:text-slate-400"
-                                    placeholder="john@example.com"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                <label htmlFor="message" className="text-sm font-medium text-slate-700 dark:text-slate-300">Message</label>
-                                <textarea
-                                    id="message"
-                                    rows="5"
-                                    className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-white/10 focus:border-brand-accent focus:ring-1 focus:ring-brand-accent outline-none transition-all placeholder:text-slate-400 resize-none"
-                                    placeholder="Tell me about your project..."
-                                ></textarea>
-                            </div>
-                            <button
-                                type="submit"
-                                className="group w-full mt-2 overflow-hidden relative bg-brand-accent hover:bg-brand-hover text-white text-lg font-[600] tracking-[0.3px] px-8 py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] shadow-[0_4px_14px_rgba(37,99,235,0.25)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.3)]"
-                            >
-                                Send Message
-                                <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                            </button>
-                        </form>
-                    </motion.div>
+                        Start a Conversation
+                        <ArrowRight className="w-5 h-5 text-brand-accent group-hover:translate-x-1 transition-transform" />
+                    </a>
+                </motion.div>
 
-                </div>
+                {/* Direct Contact & Socials Block */}
+                <motion.div
+                    className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-4 p-8 md:p-12 rounded-3xl bg-slate-50/50 dark:bg-[#0a0f1a]/50 border border-slate-200/50 dark:border-white/5 text-left backdrop-blur-sm"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                >
+                    {/* Identity */}
+                    <div className="flex flex-col gap-1.5 justify-center">
+                        <span className="text-xl font-bold font-heading text-foreground">Kunal Bose</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5B5FFF] to-[#00E0FF] font-semibold text-sm">Web Systems Developer</span>
+                        <span className="text-slate-500 dark:text-slate-400 font-mono text-xs uppercase tracking-widest mt-1">Ranchi, India</span>
+                    </div>
+
+                    {/* Contact Channels */}
+                    <div className="flex flex-col gap-3 justify-center md:items-center">
+                        <a href="mailto:kunalbose.2525@gmail.com" className="text-slate-600 dark:text-slate-300 hover:text-[#5B5FFF] transition-colors font-medium text-sm md:text-base">
+                            kunalbose.2525@gmail.com
+                        </a>
+                        <a href="tel:7667341075" className="text-slate-600 dark:text-slate-300 hover:text-[#5B5FFF] transition-colors font-medium text-sm md:text-base">
+                            +91 76673 41075
+                        </a>
+                    </div>
+
+                    {/* Socials */}
+                    <div className="flex flex-wrap items-center md:justify-end gap-3">
+                        <Link href="https://github.com/KunalBose2772" target="_blank" className="w-10 h-10 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:border-[#5B5FFF] hover:text-[#5B5FFF] transition-all">
+                            <Github className="w-4 h-4" />
+                        </Link>
+                        <Link href="https://linkedin.com/in/kunal-bose-a45926269" target="_blank" className="w-10 h-10 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:border-[#5B5FFF] hover:text-[#5B5FFF] transition-all">
+                            <Linkedin className="w-4 h-4" />
+                        </Link>
+                        <Link href="https://x.com/KunalBose2772" target="_blank" className="w-10 h-10 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:border-[#5B5FFF] hover:text-[#5B5FFF] transition-all">
+                            <Twitter className="w-4 h-4" />
+                        </Link>
+                        <Link href="https://facebook.com/people/Kunal-Bose" target="_blank" className="w-10 h-10 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:border-[#5B5FFF] hover:text-[#5B5FFF] transition-all">
+                            <Facebook className="w-4 h-4" />
+                        </Link>
+                        <Link href="https://instagram.com/kunalbose2772" target="_blank" className="w-10 h-10 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:border-[#5B5FFF] hover:text-[#5B5FFF] transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </Link>
+                    </div>
+                </motion.div>
+
             </div>
         </section>
     );
