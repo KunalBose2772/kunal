@@ -23,7 +23,10 @@ export default function Hero() {
             {/* Background Layer: Subtle drifting particles */}
             <HeroParticles />
 
-            <div className="max-w-[1480px] w-full mx-auto px-6 md:px-12 z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center relative">
+            {/* NEW: Subtle Vertical Light Beam (separating text and mockups) */}
+            <div className="hidden lg:block absolute left-[55%] top-[20%] bottom-[20%] w-[1px] bg-gradient-to-b from-transparent via-brand-accent to-transparent opacity-[0.08] lg:opacity-[0.05] shadow-[0_0_20px_rgba(37,99,235,0.2)] pointer-events-none z-0" />
+
+            <div className="max-w-[1480px] w-full mx-auto px-6 md:px-12 z-10 grid grid-cols-1 lg:grid-cols-12 gap-y-4 lg:gap-24 items-center relative">
 
                 {/* Left Side (Text & CTA) -> 55% equivalent (roughly 7 columns) */}
                 <motion.div
@@ -33,7 +36,7 @@ export default function Hero() {
                         hidden: {},
                         visible: { transition: { staggerChildren: 0.1 } },
                     }}
-                    className="lg:col-span-7 flex flex-col items-start text-left z-10"
+                    className="lg:col-span-7 flex flex-col items-start text-left z-10 lg:mb-0 relative"
                 >
                     {/* Main Headline */}
                     <motion.div variants={fadeUp} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }} className="mb-8 md:mb-10">
@@ -80,7 +83,7 @@ export default function Hero() {
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-                    className="lg:col-span-5 flex justify-center lg:justify-end mt-16 lg:mt-0"
+                    className="lg:col-span-5 flex justify-center lg:justify-end mt-4 lg:mt-0 -mb-20 sm:-mb-10 lg:mb-0 relative z-0"
                 >
                     <Mockups />
                 </motion.div>

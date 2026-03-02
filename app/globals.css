@@ -70,15 +70,14 @@
 
 .nav-glass {
   background:
-    linear-gradient(135deg, #4ec0fe 0%, #4ec0fe 55%, #e5f6ff 100%);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.45) 100%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
 
 html.dark .nav-glass {
   background:
-    radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.55), transparent 55%),
-    rgba(15, 23, 42, 0.96);
+    linear-gradient(135deg, rgba(2, 6, 23, 0.8) 0%, rgba(15, 23, 42, 0.5) 100%);
 }
 
 .crystal-border {
