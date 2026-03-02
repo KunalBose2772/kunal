@@ -86,12 +86,12 @@ const HighlightItem = ({ text }) => {
 
 export default function About() {
     return (
-        <section id="about" className="relative min-h-screen py-24 lg:py-32 border-t border-slate-200/10 z-10 flex items-center overflow-hidden">
+        <section id="about" className="relative py-12 lg:py-16 border-t border-slate-200/10 z-10 flex items-center overflow-hidden">
             {/* Background glow global */}
             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-accent/5 rounded-full blur-[120px] pointer-events-none" />
 
-            {/* Container - max-w-7xl (1280px) */}
-            <div className="max-w-[1280px] w-full mx-auto px-6 md:px-12 relative z-10 flex flex-col gap-20 lg:gap-32">
+            {/* Container - max-w-1480px */}
+            <div className="max-w-[1480px] w-full mx-auto px-6 md:px-12 relative z-10 flex flex-col gap-12 lg:gap-20">
 
                 {/* Asymmetric Top Block */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -211,14 +211,29 @@ export default function About() {
                                     <div className="absolute top-[-4px] left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-brand-accent shadow-[0_0_12px_var(--color-brand-accent)]" />
                                 </motion.div>
 
-                                {/* Central Crystal Diamond */}
-                                <motion.div
-                                    animate={{ rotate: [45, 45, 225, 225], scale: [1, 1.1, 1] }}
-                                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                                    className="w-12 h-12 rounded-xl bg-gradient-to-tr from-brand-accent to-blue-400 dark:from-brand-accent dark:to-blue-500 shadow-[0_0_30px_var(--color-brand-accent)] rotate-45 flex items-center justify-center border border-white/20"
-                                >
-                                    <div className="w-5 h-5 rounded-[4px] bg-white/30 dark:bg-white/20 border border-white/50 backdrop-blur-sm" />
-                                </motion.div>
+                                {/* Stunning 3D Glass Prism Core */}
+                                <div className="absolute inset-0 flex items-center justify-center [perspective:800px]">
+                                    <motion.div
+                                        className="relative w-12 h-12 md:w-16 md:h-16"
+                                        style={{ transformStyle: 'preserve-3d' }}
+                                        animate={{ rotateX: [0, 360], rotateY: [0, 360] }}
+                                        transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
+                                    >
+                                        {/* Inner Glowing Plasma Core */}
+                                        <div className="absolute inset-0 flex items-center justify-center" style={{ transform: 'translateZ(0px)' }}>
+                                            <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-brand-accent blur-[6px] animate-pulse shadow-[0_0_40px_rgba(37,99,235,1)]" />
+                                            <div className="absolute w-2 h-2 rounded-full bg-white shadow-[0_0_15px_#ffffff]" />
+                                        </div>
+
+                                        {/* 3D Glass Faces */}
+                                        <div className="absolute inset-0 border border-brand-accent/50 bg-brand-accent/20 backdrop-blur-[2px] shadow-[inset_0_0_20px_rgba(37,99,235,0.3)] [transform:translateZ(24px)] md:[transform:translateZ(32px)]" />
+                                        <div className="absolute inset-0 border border-brand-accent/50 bg-brand-accent/20 backdrop-blur-[2px] shadow-[inset_0_0_20px_rgba(37,99,235,0.3)] [transform:rotateY(180deg)_translateZ(24px)] md:[transform:rotateY(180deg)_translateZ(32px)]" />
+                                        <div className="absolute inset-0 border border-brand-accent/50 bg-brand-accent/20 backdrop-blur-[2px] shadow-[inset_0_0_20px_rgba(37,99,235,0.3)] [transform:rotateY(90deg)_translateZ(24px)] md:[transform:rotateY(90deg)_translateZ(32px)]" />
+                                        <div className="absolute inset-0 border border-brand-accent/50 bg-brand-accent/20 backdrop-blur-[2px] shadow-[inset_0_0_20px_rgba(37,99,235,0.3)] [transform:rotateY(-90deg)_translateZ(24px)] md:[transform:rotateY(-90deg)_translateZ(32px)]" />
+                                        <div className="absolute inset-0 border border-brand-accent/50 bg-brand-accent/20 backdrop-blur-[2px] shadow-[inset_0_0_20px_rgba(37,99,235,0.3)] [transform:rotateX(90deg)_translateZ(24px)] md:[transform:rotateX(90deg)_translateZ(32px)]" />
+                                        <div className="absolute inset-0 border border-brand-accent/50 bg-brand-accent/20 backdrop-blur-[2px] shadow-[inset_0_0_20px_rgba(37,99,235,0.3)] [transform:rotateX(-90deg)_translateZ(24px)] md:[transform:rotateX(-90deg)_translateZ(32px)]" />
+                                    </motion.div>
+                                </div>
                             </div>
                         </div>
                     </motion.div>
