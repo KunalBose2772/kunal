@@ -1,26 +1,160 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: var(--font-jost), sans-serif;
+  --font-heading: var(--font-bricolage), sans-serif;
+
+  --color-brand-accent: #2563EB;
+  --color-brand-hover: #3B82F6;
+  --color-brand-glow: rgba(59, 130, 246, 0.25);
+
+  --color-bg-light: #ffffff;
+  --color-text-light: #020617;
+
+  --color-bg-dark: #0E1116;
+  --color-bg-secondary: #111827;
+  --color-text-dark: #F8FAFC;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--color-bg-light);
+    --foreground: var(--color-text-light);
+    --secondary: #E2E8F0;
+    --grid-color: rgba(15, 23, 42, 1);
+  }
+
+  html.dark {
+    --background: var(--color-bg-dark);
+    --foreground: var(--color-text-dark);
+    --secondary: var(--color-bg-secondary);
+    --grid-color: rgba(248, 250, 252, 1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-jost), sans-serif;
+    @apply transition-colors duration-300;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .font-sans {
+    font-family: var(--font-jost), sans-serif !important;
+  }
+
+  .font-heading {
+    font-family: var(--font-bricolage), sans-serif !important;
+  }
+}
+
+.hero-grid {
+  background-size: 80px 80px;
+  background-image:
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 80%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 80%);
+  opacity: 0.02;
+}
+
+.radial-glow {
+  background: radial-gradient(circle at 20% 20%, var(--color-brand-glow) 0%, transparent 55%);
+}
+
+.nav-glass {
+  background:
+    linear-gradient(135deg, #4ec0fe 0%, #4ec0fe 55%, #e5f6ff 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+html.dark .nav-glass {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.55), transparent 55%),
+    rgba(15, 23, 42, 0.96);
+}
+
+.crystal-border {
+  border: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+html.dark .crystal-border {
+  border: 1px solid rgba(248, 250, 252, 0.1);
+}
+
+.geometry-glow {
+  filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.6));
+}
+
+.nav-logo img {
+  filter: grayscale(1) brightness(0) contrast(1.15);
+}
+
+html.dark .nav-logo img {
+  filter: none;
+}
+
+.hero-vignette {
+  background:
+    radial-gradient(circle at 50% 32%, rgba(78, 192, 254, 0) 0%, rgba(78, 192, 254, 0) 38%, rgba(78, 192, 254, 0.55) 78%, rgba(78, 192, 254, 0.85) 100%);
+}
+
+html.dark .hero-vignette {
+  background:
+    radial-gradient(circle at 20% 18%, rgba(37, 99, 235, 0.6), transparent 55%),
+    radial-gradient(circle at 78% 0%, rgba(15, 23, 42, 0.96), transparent 70%);
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(148, 163, 184, 0.55), transparent 70%);
+  box-shadow:
+    0 0 10px rgba(148, 163, 184, 0.55),
+    0 0 18px rgba(148, 163, 184, 0.2);
+}
+
+html.dark .hero-particle {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.8), transparent 70%);
+  box-shadow:
+    0 0 12px rgba(37, 99, 235, 0.8),
+    0 0 22px rgba(37, 99, 235, 0.4);
+}
+
+@keyframes particle-float {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.45;
+  }
+  60% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate3d(0, -70px, 0);
+    opacity: 0;
+  }
+}
+
+.hero-particle-anim {
+  animation-name: particle-float;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-iteration-count: infinite;
 }
