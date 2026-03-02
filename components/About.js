@@ -24,87 +24,103 @@ const CARDS = [
     },
 ];
 
+const HIGHLIGHTS = [
+    "Architected with clean backend logic.",
+    "Structured database design.",
+    "Optimized for performance.",
+    "Built to scale.",
+];
+
 const staggerContainer = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
-        transition: {
-            staggerChildren: 0.15,
-        },
+        transition: { staggerChildren: 0.15 },
     },
 };
 
-const fadeUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
+const textReveal = {
+    hidden: { opacity: 0, filter: "blur(8px)", y: 20 },
+    visible: {
+        opacity: 1,
+        filter: "blur(0px)",
+        y: 0,
+        transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+    },
+};
+
+const statReveal = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+    },
+};
+
+const cardReveal = {
+    hidden: { opacity: 0, y: 40, filter: "blur(6px)" },
+    visible: {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+    },
 };
 
 export default function About() {
     return (
         <section id="about" className="relative min-h-screen py-24 border-t border-slate-200/10 z-10 flex items-center overflow-hidden">
             {/* Background elements */}
-            <div className="absolute inset-0 pointer-events-none radial-glow opacity-20 dark:opacity-40" />
-            <div className="absolute right-0 top-1/4 w-[500px] h-[500px] bg-brand-accent/5 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute inset-0 pointer-events-none blueprint-grid opacity-30 dark:opacity-60 z-0" />
+            <div className="absolute inset-0 w-full h-[2px] pointer-events-none scan-line z-0" />
 
-            <div className="max-w-[1480px] w-full mx-auto px-6 md:px-12 relative z-10">
+            {/* Container - max-w-7xl (1280px) and centered */}
+            <div className="max-w-7xl w-full mx-auto px-6 md:px-12 relative z-10 flex flex-col items-center">
 
                 {/* Top Text Content */}
-                <div className="max-w-[860px] mb-20 md:mb-28">
+                <motion.div
+                    className="flex flex-col items-center text-center max-w-4xl mb-16 md:mb-20"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={staggerContainer}
+                >
+                    <motion.span variants={textReveal} className="text-brand-accent font-semibold tracking-widest uppercase text-xs md:text-sm mb-6 block">
+                        WHAT I ACTUALLY BUILD
+                    </motion.span>
+
+                    <motion.h2 variants={textReveal} className="text-[clamp(40px,5vw,72px)] leading-[1.05] font-heading font-bold text-foreground mb-6 tracking-tight">
+                        Engineering Real Systems.<br />
+                        <span className="text-slate-400 dark:text-slate-500 opacity-80">Not Just Websites.</span>
+                    </motion.h2>
+
+                    <motion.p variants={textReveal} className="text-slate-600 dark:text-slate-400 text-lg md:text-xl font-medium max-w-2xl leading-relaxed mb-12">
+                        Modern web development isn’t about visuals.<br className="hidden md:block" />
+                        It’s about structure, performance, and scalability.
+                    </motion.p>
+
+                    {/* Animated Highlight Statements */}
                     <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
+                        className="flex flex-col items-center gap-4"
                         variants={staggerContainer}
                     >
-                        <motion.span variants={fadeUp} className="text-brand-accent font-semibold tracking-wider uppercase text-sm mb-4 block">
-                            What I Actually Build
-                        </motion.span>
-
-                        <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl lg:text-[64px] leading-[1.1] font-heading font-bold text-foreground mb-10 tracking-tight">
-                            Engineering Real Systems — <br className="hidden md:block" />
-                            <span className="text-slate-400 dark:text-slate-500">Not Just Websites.</span>
-                        </motion.h2>
-
-                        <motion.div variants={fadeUp} className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
-                            <div className="space-y-6 text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
-                                <p>
-                                    Modern web development is not just about visuals. It’s about structure, performance, and long-term scalability.
-                                </p>
-                                <p>
-                                    Whether it’s a custom WordPress architecture, a structured PHP application, or a SaaS dashboard built with React and Next.js — my focus remains the same:
-                                </p>
-                                <div className="pt-4">
-                                    <p className="text-xl md:text-2xl font-heading font-bold text-foreground flex flex-col gap-2">
-                                        <span className="flex items-center gap-3"><span className="w-8 h-[1px] bg-brand-accent"></span>Build it right.</span>
-                                        <span className="flex items-center gap-3"><span className="w-12 h-[1px] bg-brand-accent"></span>Build it structured.</span>
-                                        <span className="flex items-center gap-3"><span className="w-16 h-[1px] bg-brand-accent"></span>Build it to last.</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="space-y-6">
-                                <p className="text-foreground font-semibold text-lg">I design and build systems that are:</p>
-                                <ul className="space-y-4">
-                                    {[
-                                        "Architected with clean backend logic",
-                                        "Structured with maintainable database design",
-                                        "Optimized for performance and environments",
-                                        "Built to scale as business requirements evolve"
-                                    ].map((item, i) => (
-                                        <li key={i} className="flex items-start gap-4 text-slate-600 dark:text-slate-400">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-brand-accent/80 mt-2.5 flex-shrink-0 shadow-[0_0_8px_rgba(37,99,235,0.5)]" />
-                                            <span className="leading-relaxed">{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </motion.div>
+                        {HIGHLIGHTS.map((item, index) => (
+                            <motion.div
+                                key={index}
+                                variants={statReveal}
+                                className="flex items-center gap-4 text-base md:text-xl font-medium text-slate-800 dark:text-slate-200"
+                            >
+                                <span className="w-8 h-[2px] bg-brand-accent/40 block" />
+                                <span>{item}</span>
+                            </motion.div>
+                        ))}
                     </motion.div>
-                </div>
+                </motion.div>
 
                 {/* 3-Column Visual Block */}
                 <motion.div
-                    className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
+                    className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 w-full"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
@@ -113,20 +129,32 @@ export default function About() {
                     {CARDS.map((card) => (
                         <motion.div
                             key={card.id}
-                            variants={fadeUp}
-                            className="bg-white/40 dark:bg-slate-900/40 p-8 md:p-10 rounded-[28px] border border-slate-200/60 dark:border-white/5 backdrop-blur-md shadow-xl shadow-slate-200/20 dark:shadow-none hover:bg-white/70 dark:hover:bg-slate-800/60 transition-all duration-500 group relative overflow-hidden"
+                            variants={cardReveal}
+                            whileHover={{
+                                y: -8,
+                                transition: { duration: 0.3, ease: "easeOut" }
+                            }}
+                            className="bg-white/40 dark:bg-slate-900/60 p-8 md:p-10 rounded-[24px] border border-slate-200/60 dark:border-white/5 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.2)] hover:shadow-[0_20px_40px_rgba(37,99,235,0.08)] dark:hover:shadow-[0_20px_40px_rgba(37,99,235,0.15)] group relative overflow-hidden transition-all duration-300"
+                            style={{ transformStyle: 'preserve-3d', transform: 'translateZ(20px)' }}
                         >
-                            {/* Subtle hover gradient inside card */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/0 to-brand-accent/0 group-hover:from-brand-accent/5 transition-all duration-500 pointer-events-none" />
+                            {/* Subtle hover pulse border effect inner */}
+                            <div className="absolute inset-0 rounded-[24px] border border-brand-accent/0 group-hover:border-brand-accent/30 transition-colors duration-500 pointer-events-none" />
+                            {/* Internal glow top-left */}
+                            <div className="absolute -top-24 -left-24 w-48 h-48 bg-brand-accent/20 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-                            <div className="mb-8 flex items-center justify-between relative z-10">
-                                <span className="text-sm font-bold tracking-widest text-brand-accent">{card.id}</span>
-                                <card.icon className="w-6 h-6 text-slate-400 dark:text-slate-500 group-hover:text-brand-accent transition-colors duration-500" />
+                            <div className="mb-10 flex items-center justify-between relative z-10">
+                                <span className="text-xs font-bold tracking-[0.2em] text-slate-400 group-hover:text-brand-accent transition-colors duration-500">{card.id}</span>
+                                <motion.div
+                                    whileHover={{ rotate: 5, scale: 1.1 }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                                >
+                                    <card.icon className="w-6 h-6 text-slate-400 dark:text-slate-500 group-hover:text-brand-accent transition-colors duration-500" />
+                                </motion.div>
                             </div>
-                            <h3 className="text-2xl font-heading font-bold text-foreground mb-4 relative z-10 group-hover:text-brand-accent transition-colors duration-500">
+                            <h3 className="text-xl md:text-2xl font-heading font-bold text-foreground mb-4 relative z-10 group-hover:text-brand-accent transition-colors duration-500">
                                 {card.title}
                             </h3>
-                            <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base relative z-10">
+                            <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base relative z-10 font-medium">
                                 {card.description}
                             </p>
                         </motion.div>
