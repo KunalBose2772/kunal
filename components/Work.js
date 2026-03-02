@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Terminal } from "lucide-react";
+import { Terminal, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 const SYSTEMS = [
     {
@@ -82,8 +83,8 @@ const SYSTEMS = [
 
 export default function Work() {
     return (
-        <section id="work" className="relative py-24 lg:py-32 border-t border-slate-200/10 z-10 flex flex-col justify-center overflow-hidden">
-            <div className="max-w-[1280px] w-full mx-auto px-6 md:px-12 relative z-10 flex flex-col gap-16 md:gap-[160px]">
+        <section id="work" className="relative py-10 lg:py-16 border-t border-slate-200/10 z-10 flex flex-col justify-center overflow-hidden">
+            <div className="max-w-[1480px] w-full mx-auto px-6 md:px-12 relative z-10 flex flex-col gap-16 md:gap-[120px]">
 
                 {/* Section Header */}
                 <motion.div
@@ -91,15 +92,22 @@ export default function Work() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex flex-col items-start text-left max-w-2xl"
+                    className="flex flex-col md:flex-row md:items-end justify-between gap-6 w-full"
                 >
-                    <span className="text-brand-accent font-semibold tracking-widest uppercase text-xs md:text-sm mb-4 block">
-                        SELECTED SYSTEMS
-                    </span>
-                    <h2 className="text-[clamp(36px,5vw,64px)] leading-[1.05] font-heading font-bold text-foreground tracking-tight">
-                        Engineered <br className="hidden md:block" />
-                        <span className="text-slate-400 dark:text-slate-500">Case Studies.</span>
-                    </h2>
+                    <div className="flex flex-col items-start text-left">
+                        <span className="text-brand-accent font-semibold tracking-widest uppercase text-xs md:text-sm mb-4 block">
+                            SELECTED SYSTEMS
+                        </span>
+                        <h2 className="text-[clamp(36px,5vw,64px)] leading-[1.05] font-heading font-bold text-foreground tracking-tight flex flex-wrap gap-3">
+                            Engineered
+                            <span className="text-slate-400 dark:text-slate-500">Case Studies.</span>
+                        </h2>
+                    </div>
+
+                    <Link href="/portfolio" className="group flex items-center gap-2 px-6 py-3 md:py-4 rounded-xl border border-slate-200/50 dark:border-white/10 bg-slate-50 hover:bg-white dark:bg-slate-900 dark:hover:bg-slate-800 text-sm md:text-base font-semibold text-foreground transition-all duration-300 shadow-sm hover:shadow-[0_4px_20px_rgba(37,99,235,0.1)]">
+                        View All Work
+                        <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-brand-accent group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+                    </Link>
                 </motion.div>
 
                 {/* Systems List */}
